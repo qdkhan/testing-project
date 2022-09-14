@@ -12,6 +12,6 @@ class SiteController extends Controller
 
     public function firstView(){
         // return 'Hello';
-        view('first');//first.blade.php
+       return view('first');//first.blade.php
     }
 }
