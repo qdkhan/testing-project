@@ -28,7 +28,7 @@ Route::get('/first-view', [SiteController::class, 'firstView']);
 
 //Basic Routings
 Route::get('/about', function(){
-    return '<h2>Basic Routings</h2>';
+    return '<h1>Basic Routings</h1>';
 });
 
 //View Route
@@ -38,3 +38,14 @@ Route::view('/service2', 'first');
 
 //Route With Parametre
 Route::get('/service3/{qdkhan?}', [ServiceController::class, 'routingParametre']);
+
+//Redirect Route From One Route to another Route
+Route::redirect('/redirect', '/service2');
+Route::get('/fill-form', function(){
+    return redirect('/about');
+});
+
+//Route::view('/multimedia/{email?}', 'multimediaView'); //OR
+Route::get('/multimedia/{email?}', function($email){
+    return view('multimediaView', ['email'  => $email]);
+});
