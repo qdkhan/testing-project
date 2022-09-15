@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,17 @@ Route::get('/first-view', [SiteController::class, 'firstView']);
 // Route::get('/first-view', function(){
 //     return view("first");
 // });
+
+
+//Basic Routings
+Route::get('/about', function(){
+    return '<h2>Basic Routings</h2>';
+});
+
+//View Route
+Route::get('/service', [ServiceController::class, 'service']);
+
+Route::view('/service2', 'first');
+
+//Route With Parametre
+Route::get('/service3/{qdkhan?}', [ServiceController::class, 'routingParametre']);
