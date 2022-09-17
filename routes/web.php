@@ -49,3 +49,6 @@ Route::get('/fill-form', function(){
 Route::get('/multimedia/{email?}', function($email){
     return view('multimediaView', ['email'  => $email]);
 });
+
+// Route::get('/view/{name}/{email}', [ServiceController::class, 'printName']);
+Route::view('/view', 'multimediaView', [ 'names' => ['name' => 'Online exam', 'email' => 'onlineweb@xipetech.com']]);
