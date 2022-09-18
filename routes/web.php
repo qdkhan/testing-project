@@ -52,3 +52,7 @@ Route::get('/multimedia/{email?}', function($email){
 
 // Route::get('/view/{name}/{email}', [ServiceController::class, 'printName']);
 Route::view('/view', 'multimediaView', [ 'names' => ['name' => 'Online exam', 'email' => 'onlineweb@xipetech.com']]);
+
+Route::get('/json', function(){
+    return view('json', ['names' => ['exam'=> 'Online exam', 'email' => 'onlinewebTutorials']]);
+});

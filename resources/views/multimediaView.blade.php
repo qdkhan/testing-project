@@ -7,7 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-
+    @csrf()
+    @include('partials.header')
 {{-- name :  {{ $n['name'] }} <br/>
 email : {{ $n['email'] }} --}}
     {{--
@@ -32,7 +33,7 @@ email : {{ $n['email'] }} --}}
         --}}
 
         @for($i =0; $i<5; $i++)
-            <h4>{{$i}}</h4>
+            {{$i}}
         @endfor
     </p>
 </body>
