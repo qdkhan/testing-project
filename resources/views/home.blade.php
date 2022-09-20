@@ -7,10 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-        @csrf()
-    <script type="text/javascript">
-       var names = @json($names) ;
-       console.log(names);
-    </script>
+    <x-home type="error" message="Here is Some message For Succes Or Failed" :page=$page><x-slot name='email'>qdkhan05@gmail.com</x-slot>Slot Message</x-home>
 </body>
 </html>

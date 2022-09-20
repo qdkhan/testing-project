@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +28,9 @@ Route::get('/first-view', [SiteController::class, 'firstView']);
 
 
 //Basic Routings
-Route::get('/about', function(){
-    return '<h1>Basic Routings</h1>';
-});
+// Route::get('/about', function(){
+//     return '<h1>Basic Routings</h1>';
+// });
 
 //View Route
 Route::get('/service', [ServiceController::class, 'service']);
@@ -56,3 +57,23 @@ Route::view('/view', 'multimediaView', [ 'names' => ['name' => 'Online exam', 'e
 Route::get('/json', function(){
     return view('json', ['names' => ['exam'=> 'Online exam', 'email' => 'onlinewebTutorials']]);
 });
+
+// Route::get('/about', function() {
+//     return view('about');
+// });
+Route::view('/about','about');
+Route::view('/product','products');
+//Component With Dynamic Value
+Route::get('/about', function(){
+
+    return view('about', ['page' => 'About Us Page']);
+});
+
+Route::get('/home', function(){
+    return view('home', ['page' => 'Home Page']);
+});
+
+
+//Registration Start Here
+Route::get('/registration', [StudentController::class, 'registrationForm']);
+Route::post('/save_detail', [Studentcontroller::class, 'saveDetail']);
