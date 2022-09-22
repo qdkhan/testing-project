@@ -9,11 +9,12 @@
 <body>
     <h1>Registration Form</h1>
     <form action={{ url('/save_detail') }} method="post" enctype="multipart/form">
-        {{csrf_field()}}
+        {{-- {{csrf_field()}} --}}
+        @csrf()
         <label for="fname">First name:</label><br>
-        <input type="text" id="fname" name="fname" value=""><br>
+        <input type="text" id="fname" name="fname" value="" oncopy="return false"><br>
         <label for="lname">Last name:</label><br>
-        <input type="text" id="lname" name="lname" value=""><br><br>
+        <input type="text" id="lname" name="lname" value="" onpaste="return false"><br><br>
         <input type="submit" value="Submit">
     </form> 
 </body>

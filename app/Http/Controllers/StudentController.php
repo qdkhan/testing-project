@@ -11,6 +11,7 @@ class StudentController extends Controller
     }
 
     public function saveDetail(Request $request){
-        return $request->all();
+        // return $request->all();
+        return $request->input('fname');
     }
 }
