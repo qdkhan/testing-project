@@ -11,6 +11,9 @@ class StudentController extends Controller
     }
 
     public function saveDetail(Request $request){
-        return $request->all();
+        print_r($request->all());
+
+        return view('registration-form');
+        // return redirect('registration');
     }
 }
