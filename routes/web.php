@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\CrudController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,3 +81,9 @@ Route::post('/save_detail', [Studentcontroller::class, 'saveDetail']);
 
 //Sum In an Array
 Route::get('/find-sum', [SiteController::class, 'findSum']);
+
+// Use DB updateData
+Route::get('get-data', [CrudController::class, 'getRecord']);
+Route::get('insert-data', [CrudController::class, 'insertData']);
+Route::get('update-data', [CrudController::class, 'updateData']);
+Route::get('delete-data', [CrudController::class, 'deleteData']);
