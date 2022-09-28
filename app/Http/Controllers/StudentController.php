@@ -7,17 +7,24 @@ use App\Http\Requests\StudentValidation;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
+use App\Models\Student;
 
 
 class StudentController extends Controller
 {
     public function registrationForm(){
-        return view('registration-form');
+
+        // $data = DB::table('students')->select('*')->get();
+        // $data = Student::withTrashed()->select('*')->get();
+        $data = Student::all();
+
+        return view('registration-form', ['data' => $data]);
     }
 
-    // public function saveDetail(Request $request){
+    public function saveDetail(Request $request){
         //Validation Using Validate
-        /* if($request->isMethod('post')){
+        // return $request->all();
+        if($request->isMethod('post')){
             $request->validate([
                 'fname' => 'required',
                 'lname' => 'required',
@@ -28,13 +35,33 @@ class StudentController extends Controller
                 'lname.required' => 'Last name field is required',
                 'mobile.required' => 'Mobile field is required',
             ]);
-            print_r($request->all());
-            return view('registration-form');
-        } */
+            // Query Builder
+            // $id = DB::table('students')->insertGetId([
+            //     'fname'     => $request->fname,
+            //     'lname'     => $request->lname,
+            //     'mobile'    => $request->mobile,
+            // ]);
+
+            // Using Model 
+            $result = new Student;
+            $result->fname = $request->fname;
+            $result->lname = $request->lname;
+            $result->mobile = $request->mobile;
+            $result->save();
+
+            $id = $result->id;
+
+            $request->session()->flash('success', 'Inserted Successfully');
+            // if($id) return view('registration-form');
+            #if($id) return redirect('/registration'); // Or
+            if($id) return redirect()->to('/registration');
+            // print_r($request->all());
+            // return view('registration-form');
+        }
 
 
         
-    // }
+    }
 
     /* public function saveDetail(StudentValidation $request){
         //make:request validator
@@ -43,7 +70,7 @@ class StudentController extends Controller
         return view('registration-form');
     } */
 
-    public function saveDetail(Request $request){
+    /* public function saveDetail(Request $request){
         print_r($request->all());
 
         return view('registration-form');
@@ -65,5 +92,5 @@ class StudentController extends Controller
         print_r($request->all());
         return view('registration-form');
 
-    }
+    } */
 }

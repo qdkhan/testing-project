@@ -47,8 +47,8 @@ class CrudController extends Controller
 
         $result = DB::table('users')->where('id', 18)->update([
             'name' => 'Akshay Saini',
-            'phone' => 9999999900,
-            'email' => 'akshay@gmail.com',
+            'phone'=> 9999999900,
+            'email'=> 'akshay@gmail.com',
         ]);
 
         // print_r($result);
