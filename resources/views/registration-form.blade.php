@@ -16,6 +16,12 @@
         </div>
     @endif
 
+    @if(session()->has('delete'))
+        <div class="alert alert-danger" role="alert">
+            {{session()->get('delete')}}
+        </div>
+    @endif
+
     @if($errors->any())
         <ul>
         @foreach($errors->all() as $error)
@@ -38,7 +44,7 @@
         </div>
         <div class="form-group">
         <label for="lname">Mobile:</label>
-            <input type="text" class="form-control" id="mobile" name="mobile" value="{{old('mobile')}}" onpaste="return false">
+            <input type="number" minlength="10" class="form-control" id="mobile" name="mobile" value="{{old('mobile')}}" onpaste="return false">
             <small id="emailHelp" class="form-text text-muted">@error('mobile') {{$message}} @enderror</small>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -62,8 +68,8 @@
                     <td>{{$value->fname}}</td>
                     <td>{{$value->lname}}</td>
                     <td>{{$value->mobile}}</td>
-                    <td>Edit</td>
-                    <td>Delete</td>
+                    <td><a href="{{url('')}}" class="btn btn-primary">Edit</a></td>
+                    <td><a href="{{url('delete_record/')}}/{{$value->id}}" class="btn btn-danger">Delete</a></td>
                 </tr>
             @endforeach
         </tbody>

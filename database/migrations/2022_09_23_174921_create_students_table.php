@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('student_testings', function (Blueprint $table) {
             $table->id();
             $table->binary('photo');
             $table->bigInteger('votes');

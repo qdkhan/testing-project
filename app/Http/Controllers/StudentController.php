@@ -70,13 +70,10 @@ class StudentController extends Controller
         return view('registration-form');
     } */
 
-<<<<<<< HEAD
-    public function saveDetail(Request $request){
+    // public function saveDetail(Request $request){
         // print_r($request->all());
-=======
     /* public function saveDetail(Request $request){
         print_r($request->all());
->>>>>>> 7a56c0e2951317950a96c2fc996fea29edcd73e8
 
         // return view('registration-form');
         // return redirect('registration');
@@ -98,4 +95,11 @@ class StudentController extends Controller
         return view('registration-form');
 
     } */
+
+    public function deleteRecord(Request $request){
+        // return $request->id;
+        $id = Student::where('id', $request->id)->delete();
+        $request->session()->flash('delete', 'Deleted Successfully');
+        return redirect()->to('/registration');
+    }
 }
