@@ -16,75 +16,81 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Registration Form</h1>
-    @if(session()->has('success'))
-        <div class="alert alert-success" role="alert">
-            {{session()->get('success')}}
-        </div>
-    @endif
+    <div class="container">
+        <div class="row">
+        <h1>Registration Form</h1>
+                @if(session()->has('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{session()->get('success')}}
+                    </div>
+                @endif
 
-    @if(session()->has('delete'))
-        <div class="alert alert-danger" role="alert">
-            {{session()->get('delete')}}
+                @if(session()->has('delete'))
+                    <div class="alert alert-danger" role="alert">
+                        {{session()->get('delete')}}
+                    </div>
+                @endif
+            <div class="col-sm-4">
+                @if($errors->any())
+                    <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                    </ul>
+                @endif
+                <form action={{ url('/save_detail') }} method="post" enctype="multipart/form" >
+                {{-- {{csrf_field()}} --}}
+                    @csrf()
+                    <div class="form-group">
+                    <label for="fname">First name:</label>
+                        <input type="text" id="fname" class="form-control" name="fname" value="{{old('fname')}}" oncopy="return false" oncontextmenu="return false">
+                        <small id="emailHelp" class="form-text text-muted">@error('fname') {{$message}} @enderror</small>
+                    </div>
+                    <div class="form-group">
+                    <label for="lname">Last name:</label>
+                        <input type="text" class="form-control" id="lname" name="lname" value="{{old('lname')}}" onpaste="return false">
+                        <small id="emailHelp" class="form-text text-muted">@error('lname') {{$message}} @enderror</small>
+                    </div>
+                    <div class="form-group">
+                    <label for="lname">Mobile:</label>
+                        <input type="number" minlength="10" class="form-control" id="mobile" name="mobile" value="{{old('mobile')}}" onpaste="return false">
+                        <small id="emailHelp" class="form-text text-muted">@error('mobile') {{$message}} @enderror</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="col-sm-8">
+                    @if($data)
+                    <table class="table table-striped" id="myTable">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Nmae</th>
+                            <th scope="col">Mobile</th>
+                            <th>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($data as $key=>$value)
+                            <tr>
+                                <th scope="row">{{++$key}}</th>
+                                <td>{{$value->fname}}</td>
+                                <td>{{$value->lname}}</td>
+                                <td>{{$value->mobile}}</td>
+                                <td><a href="{{url('edit_record')}}/{{$value->id}}" class="btn btn-primary">Edit</a><a href="{{url('delete_record')}}/{{$value->id}}" class="btn btn-danger">Delete</a></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    @endif
+                </table>
+                <script>
+                    $(document).ready( function () {
+                        $('#myTable').DataTable();
+                        } );
+                </script>
+            </div>
         </div>
-    @endif
-
-    @if($errors->any())
-        <ul>
-        @foreach($errors->all() as $error)
-            <li>{{$error}}</li>
-        @endforeach
-        </ul>
-    @endif
-    <form action={{ url('/save_detail') }} method="post" enctype="multipart/form" >
-    {{-- {{csrf_field()}} --}}
-        @csrf()
-        <div class="form-group">
-        <label for="fname">First name:</label>
-            <input type="text" id="fname" class="form-control" name="fname" value="{{old('fname')}}" oncopy="return false" oncontextmenu="return false">
-            <small id="emailHelp" class="form-text text-muted">@error('fname') {{$message}} @enderror</small>
-        </div>
-        <div class="form-group">
-        <label for="lname">Last name:</label>
-            <input type="text" class="form-control" id="lname" name="lname" value="{{old('lname')}}" onpaste="return false">
-            <small id="emailHelp" class="form-text text-muted">@error('lname') {{$message}} @enderror</small>
-        </div>
-        <div class="form-group">
-        <label for="lname">Mobile:</label>
-            <input type="number" minlength="10" class="form-control" id="mobile" name="mobile" value="{{old('mobile')}}" onpaste="return false">
-            <small id="emailHelp" class="form-text text-muted">@error('mobile') {{$message}} @enderror</small>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-
-        @if($data)
-        <table class="table table-striped" id="myTable">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Nmae</th>
-                <th scope="col">Mobile</th>
-                <th>Action</td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($data as $key=>$value)
-                <tr>
-                    <th scope="row">{{++$key}}</th>
-                    <td>{{$value->fname}}</td>
-                    <td>{{$value->lname}}</td>
-                    <td>{{$value->mobile}}</td>
-                    <td><a href="{{url('')}}" class="btn btn-primary">Edit</a><a href="{{url('delete_record')}}/{{$value->id}}" class="btn btn-danger">Delete</a></td>
-                </tr>
-            @endforeach
-        </tbody>
-        @endif
-    </table>
-    <script>
-        $(document).ready( function () {
-            $('#myTable').DataTable();
-            } );
-    </script>
+    </div>
 </body>
 </html>

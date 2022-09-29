@@ -102,4 +102,14 @@ class StudentController extends Controller
         $request->session()->flash('delete', 'Deleted Successfully');
         return redirect()->to('/registration');
     }
+
+    public function editRecord(Request $request){
+        if($request->isMethod('post')){
+            return $request->id;
+        }else{
+            $single = Student::find($request->id);
+            $data = Student::all();
+            return view('/registration-form', ['single'=> $single, 'data'=> $data]);
+        }
+    }
 }
