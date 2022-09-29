@@ -44,9 +44,9 @@ class StudentController extends Controller
     } */
 
     public function saveDetail(Request $request){
-        print_r($request->all());
+        // print_r($request->all());
 
-        return view('registration-form');
+        // return view('registration-form');
         // return redirect('registration');
         $validate = Validator::make($request->all(),
         [
@@ -62,7 +62,7 @@ class StudentController extends Controller
         if($validate->fails()) return redirect ('/registration')->withErrors($validate)->withInput();
         // if($validate->fails()) return Redirect::back()->withErrors($validate)->withInput();
         
-        print_r($request->all());
+        // print_r($request->all());
         return view('registration-form');
 
     }
