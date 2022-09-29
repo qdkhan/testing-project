@@ -70,10 +70,12 @@ class StudentController extends Controller
         return view('registration-form');
     } */
 
+    // public function saveDetail(Request $request){
+        // print_r($request->all());
     /* public function saveDetail(Request $request){
         print_r($request->all());
 
-        return view('registration-form');
+        // return view('registration-form');
         // return redirect('registration');
         $validate = Validator::make($request->all(),
         [
@@ -89,8 +91,15 @@ class StudentController extends Controller
         if($validate->fails()) return redirect ('/registration')->withErrors($validate)->withInput();
         // if($validate->fails()) return Redirect::back()->withErrors($validate)->withInput();
         
-        print_r($request->all());
+        // print_r($request->all());
         return view('registration-form');
 
     } */
+
+    public function deleteRecord(Request $request){
+        // return $request->id;
+        $id = Student::where('id', $request->id)->delete();
+        $request->session()->flash('delete', 'Deleted Successfully');
+        return redirect()->to('/registration');
+    }
 }

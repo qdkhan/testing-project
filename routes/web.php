@@ -78,6 +78,7 @@ Route::get('/home', function(){
 //Registration Start Here
 Route::get('/registration', [StudentController::class, 'registrationForm']);
 Route::post('/save_detail', [Studentcontroller::class, 'saveDetail']);
+Route::get('/delete_record/{id}', [Studentcontroller::class, 'deleteRecord']);
 
 //Sum In an Array
 Route::get('/find-sum', [SiteController::class, 'findSum']);
