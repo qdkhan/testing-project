@@ -16,7 +16,9 @@ class StudentController extends Controller
 
         // $data = DB::table('students')->select('*')->get();
         // $data = Student::withTrashed()->select('*')->get();
-        $data = Student::all();
+        $data = Student::orderBy('id','DESC')->get();
+        #$data = Student::skip(3)->take(5)->get();// Or
+        #$data = Student::offset(3)->limit(5)->get();
 
         return view('registration-form', ['data' => $data]);
     }
