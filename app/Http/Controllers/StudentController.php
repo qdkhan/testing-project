@@ -104,12 +104,40 @@ class StudentController extends Controller
     }
 
     public function editRecord(Request $request){
+        
         if($request->isMethod('post')){
-            return $request->id;
+            $request->validate([
+                'fname' => 'required',
+                'lname' => 'required',
+                'mobile' => 'required',
+            ],
+            [
+                'fname.required' => 'First name field is required',
+                'lname.required' => 'Last name field is required',
+                'mobile.required' => 'Mobile field is required',
+            ]);
+
+
+            // $result = Student::find($request->id);
+            // $result->fname = $request->fname;
+            // $result->lname = $request->lname;
+            // $result->mobile = $request->mobile;
+            // $result->save();
+
+            // $id = $result->id;
+
+            // $request->session()->flash('success', 'Updated Successfully');
+
+            $result = DB::table('students')->where('id',$request->id)->update([
+            'fname' => $request->fname,
+            'lname' => $request->lname,
+            'mobile' => $request->mobile,
+            ]);
+            $request->session()->flash('success', 'Updated Successfully');
+            return redirect()->to('/registration');
         }else{
-            $single = Student::find($request->id);
-            $data = Student::all();
-            return view('/registration-form', ['single'=> $single, 'data'=> $data]);
+            $data = Student::find($request->id);
+            return view('/update-form')->withData($data);
         }
     }
 }
