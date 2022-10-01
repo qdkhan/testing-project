@@ -5,6 +5,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CrudController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,3 +90,25 @@ Route::get('get-data', [CrudController::class, 'getRecord']);
 Route::get('insert-data', [CrudController::class, 'insertData']);
 Route::get('update-data', [CrudController::class, 'updateData']);
 Route::get('delete-data', [CrudController::class, 'deleteData']);
+
+// Middleware
+Route::middleware(['web'])->group(function(){ 
+    Route::get('/routeOne', function(){
+        echo '<h3>Route One<h3>';
+    });
+    Route::get('/routeTwo', function(){
+        echo '<h3>Route Two<h3>';
+    });
+    Route::get('/routeThree', function(){
+        echo '<h3>Route Three<h3>';
+    });
+    Route::get('/routeFour', function(){
+        echo '<h3>Route Four<h3>';
+    });
+});
+    
+Route::view('/noaccess', 'noaccess');
+//Third Party Data
+Route::get('/json-placeholder', [PostController::class, 'jsonDataGet']);
+//Language 
+Route::view('/language', 'language');
