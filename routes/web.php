@@ -112,3 +112,6 @@ Route::view('/noaccess', 'noaccess');
 Route::get('/json-placeholder', [PostController::class, 'jsonDataGet']);
 //Language 
 Route::view('/language', 'language');
+
+// Eloquent ORM
+Route::get('routeFive', [ServiceController::class, 'eloquentORM']);

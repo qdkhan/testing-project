@@ -101,6 +101,7 @@ class StudentController extends Controller
     public function deleteRecord(Request $request){
         // return $request->id;
         $id = Student::where('id', $request->id)->delete();
+        // $id = Student::destroy([1,2,3,4,5]);
         $request->session()->flash('delete', 'Deleted Successfully');
         return redirect()->to('/registration');
     }
@@ -138,7 +139,7 @@ class StudentController extends Controller
             $request->session()->flash('success', 'Updated Successfully');
             return redirect()->to('/registration');
         }else{
-            $data = Student::find($request->id);
+            $data = Student::findOrFail($request->id);
             return view('/update-form')->withData($data);
         }
     }

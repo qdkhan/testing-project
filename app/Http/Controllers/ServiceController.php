@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Student;
 
 class ServiceController extends Controller
 {
@@ -23,5 +24,11 @@ class ServiceController extends Controller
         // $name = $name;
         // $email = $email;
         return view('multimediaView', compact('n'));
+    }
+
+    public function eloquentORM(){
+        $result = Student::select('fname','lname')->with('branch')->find(2);
+        return $result;
+        
     }
 }
