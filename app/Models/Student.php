@@ -10,6 +10,10 @@ class Student extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d',
+    ];
+
     public function getLnameAttribute($value){
         return strtolower($value);
     }
@@ -19,6 +23,11 @@ class Student extends Model
     }
 
     public function branch(){
-        return $this->hasOne(Branch::class)->select('course_name');
+        return $this->hasOne(Branch::class);
     }
+
+    public function oneToMany(){
+        return $this->hasMany(Branch::class);
+    }
+
 }

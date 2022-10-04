@@ -15,7 +15,7 @@ class TestingSeeder extends Seeder
      */
     public function run()
     {
-        $faker = \Faker\Factory::create();
+        $faker = \Faker\Factory::create('en_IN');
         // DB::table('testings')->insert([
         //     'name'      => 'Ayan Khan',
         //     'address'   => 'Mumbai',

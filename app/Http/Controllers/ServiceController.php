@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\Branch;
 
 class ServiceController extends Controller
 {
@@ -26,9 +27,22 @@ class ServiceController extends Controller
         return view('multimediaView', compact('n'));
     }
 
-    public function eloquentORM(){
-        $result = Student::select('fname','lname')->with('branch')->find(2);
+    public function hasOne(){
+        // $result = Student::find(2)->branch;
+        // return $result;
+
+        //Inverse of hasOne
+        $result = Branch::find(2)->student;
         return $result;
         
+    }
+
+    public function oneTwoMany(){
+        // $result = Student::find(2)->oneToMany;
+        // return $result;
+
+        //Inverse of hasmany
+        // $result = Branch::find(3)->belongsToMany;
+        // return $result;
     }
 }

@@ -114,4 +114,5 @@ Route::get('/json-placeholder', [PostController::class, 'jsonDataGet']);
 Route::view('/language', 'language');
 
 // Eloquent ORM
-Route::get('routeFive', [ServiceController::class, 'eloquentORM']);
+Route::get('hasOne', [ServiceController::class, 'hasOne']);
+Route::get('oneToMany', [ServiceController::class, 'oneTwoMany']);
