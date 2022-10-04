@@ -6,6 +6,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CrudController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\HasOneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -116,3 +117,6 @@ Route::view('/language', 'language');
 // Eloquent ORM
 Route::get('hasOne', [ServiceController::class, 'hasOne']);
 Route::get('oneToMany', [ServiceController::class, 'oneTwoMany']);
+
+//Has One Controller
+Route::get('hasOneThrough', [HasOneController::class, 'hasOneThrough']);
