@@ -14,7 +14,7 @@ class Branch extends Model
     }
 
     //Inverse of hasmany
-    public function belongsToMany(){
-        return $this->belongsTo(Student::class);
-    }
+    // public function belongsToMany(){
+    //     return $this->belongsTo(Student::class);
+    // }
 }

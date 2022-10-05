@@ -8,6 +8,7 @@ use App\Http\Controllers\CrudController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HasOneController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -114,9 +115,16 @@ Route::get('/json-placeholder', [PostController::class, 'jsonDataGet']);
 //Language 
 Route::view('/language', 'language');
 
-// Eloquent ORM
+//Eloquent ORM One To One
 Route::get('hasOne', [ServiceController::class, 'hasOne']);
 Route::get('oneToMany', [ServiceController::class, 'oneTwoMany']);
+
+//One To Many
+Route::get('/hasMany', [ServiceController::class, 'hasMany']);
+Route::get('/hasManyPost', [ServiceController::class, 'hasManyPost']);
+
+//Belongs To many
+Route::get('/belongsToMany', [ServiceController::class, 'belongsToMany']);
 
 //Has One Controller
 Route::get('hasOneThrough', [HasOneController::class, 'hasOneThrough']);

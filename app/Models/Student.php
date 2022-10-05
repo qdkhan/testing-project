@@ -26,8 +26,7 @@ class Student extends Model
         return $this->hasOne(Branch::class);
     }
 
-    public function oneToMany(){
+    public function branches(){
         return $this->hasMany(Branch::class);
     }
-
 }
