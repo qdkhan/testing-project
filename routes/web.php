@@ -8,7 +8,6 @@ use App\Http\Controllers\CrudController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HasOneController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +18,20 @@ use App\Http\Controllers\HasOneController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//Laravel Breeze
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+//End Breeze
+
+
 
 Route::get('/', function () {
     return view('welcome');
