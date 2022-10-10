@@ -139,8 +139,12 @@ class StudentController extends Controller
             $request->session()->flash('success', 'Updated Successfully');
             return redirect()->to('/registration');
         }else{
-            $data = Student::findOrFail($request->id);
-            return view('/update-form')->withData($data);
+            // return $request->id;
+            $dataa = Student::findOrFail($request->id);
+            // return view('/update-form', ['dataa' => $data]);
+            // return $data;
+            $all_data = Student::orderBy('id','DESC')->get();
+            return view('/registration-form', ['dataa' => $dataa, 'data'=>$all_data]);
         }
     }
 }

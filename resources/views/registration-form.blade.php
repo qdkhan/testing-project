@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
     
-    <title>Document</title>
+    <title>CRUD</title>
 </head>
 <body>
     <div class="container">
@@ -24,6 +24,14 @@
                         {{session()->get('success')}}
                     </div>
                 @endif
+                
+                {{-- 
+                    <!-- @if(session('success')) -->
+                        <div class="alert alert-warning" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    <!-- @endif -->
+                --}}
 
                 @if(session()->has('delete'))
                     <div class="alert alert-danger" role="alert">
@@ -38,22 +46,22 @@
                     @endforeach
                     </ul>
                 @endif
-                <form action={{ url('/save_detail') }} method="post" enctype="multipart/form" >
+                <form action={{ isset($dataa->id) ? url('edit_record',$dataa->id) : url('/save_detail') }}  method="post" enctype="multipart/form-data" >
                 {{-- {{csrf_field()}} --}}
                     @csrf()
                     <div class="form-group">
                     <label for="fname">First name:</label>
-                        <input type="text" id="fname" class="form-control" name="fname" value="{{old('fname')}}" oncopy="return false" oncontextmenu="return false">
+                        <input type="text" id="fname" class="form-control" name="fname" value="{{ old('fname' ,isset($dataa) ? $dataa->fname : '')}}" oncopy="return false" oncontextmenu="return false">
                         <small id="emailHelp" class="form-text text-muted">@error('fname') {{$message}} @enderror</small>
                     </div>
                     <div class="form-group">
                     <label for="lname">Last name:</label>
-                        <input type="text" class="form-control" id="lname" name="lname" value="{{old('lname')}}" onpaste="return false">
+                        <input type="text" class="form-control" id="lname" name="lname" value="{{old('lname', isset($dataa) ? $dataa->lname : '')}}" onpaste="return false">
                         <small id="emailHelp" class="form-text text-muted">@error('lname') {{$message}} @enderror</small>
                     </div>
                     <div class="form-group">
                     <label for="lname">Mobile:</label>
-                        <input type="number" minlength="10" class="form-control" id="mobile" name="mobile" value="{{old('mobile')}}" onpaste="return false">
+                        <input type="number" minlength="10" class="form-control" id="mobile" name="mobile" value="{{old('mobile', isset($dataa) ? $dataa->mobile : '')}}" onpaste="return false">
                         <small id="emailHelp" class="form-text text-muted">@error('mobile') {{$message}} @enderror</small>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>

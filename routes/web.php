@@ -141,3 +141,5 @@ Route::get('/belongsToMany', [ServiceController::class, 'belongsToMany']);
 
 //Has One Controller
 Route::get('hasOneThrough', [HasOneController::class, 'hasOneThrough']);
+
+Route::view('testing','testingIndex.index');
