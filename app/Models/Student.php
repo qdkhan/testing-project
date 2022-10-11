@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Log;
 
 class Student extends Model
 {
@@ -29,4 +30,39 @@ class Student extends Model
     public function branches(){
         return $this->hasMany(Branch::class);
     }
+
+    /* public static function boot(){
+
+        parent::boot();
+
+        static::creating(function($item){
+            Log::info("Creating Student ".$item);
+        });
+        static::created(function($item){
+            Log::info("Created Student ".$item);
+        });
+
+        static::updating(function($item){
+            Log::info("Updating Student ".$item);
+        });
+        static::updated(function($item){
+            Log::info("Updated Student ".$item);
+        });
+
+        static::deleting(function($item){
+            Log::info(" Deleting Student ".$item);
+        });
+        static::deleted(function($item){
+            Log::info("Deleted Student ".$item);
+        });
+
+    } */
+
+    //OR
+
+    //Use Only Event
+    protected $dispatchesEvents = [
+        'creating' => \App\Events\StudentCreatingEvent::class,
+        'created' => \App\Events\StudentCreatedEvent::class,
+    ];
 }
