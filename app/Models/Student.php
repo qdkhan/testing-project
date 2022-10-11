@@ -61,8 +61,12 @@ class Student extends Model
     //OR
 
     //Use Only Event
-    protected $dispatchesEvents = [
-        'creating' => \App\Events\StudentCreatingEvent::class,
-        'created' => \App\Events\StudentCreatedEvent::class,
-    ];
+    // protected $dispatchesEvents = [
+    //     'creating' => \App\Events\StudentCreatingEvent::class,
+    //     'created' => \App\Events\StudentCreatedEvent::class,
+    // ];
+
+    public function scopeWhereLname($query, $args = 'Khan'){
+        return $query->whereNot('lname', $args);
+    }
 }

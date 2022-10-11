@@ -16,7 +16,7 @@ class StudentController extends Controller
 
         // $data = DB::table('students')->select('*')->get();
         // $data = Student::withTrashed()->select('*')->get();
-        $data = Student::orderBy('id','DESC')->get();
+        $data = Student::whereLname('Khanna')->orderBy('id','DESC')->get();
         #$data = Student::skip(3)->take(5)->get();// Or
         #$data = Student::offset(3)->limit(5)->get();
 
@@ -121,21 +121,21 @@ class StudentController extends Controller
             ]);
 
 
-            // $result = Student::find($request->id);
-            // $result->fname = $request->fname;
-            // $result->lname = $request->lname;
-            // $result->mobile = $request->mobile;
-            // $result->save();
+            $result = Student::find($request->id);
+            $result->fname = $request->fname;
+            $result->lname = $request->lname;
+            $result->mobile = $request->mobile;
+            $result->save();
 
             // $id = $result->id;
 
             // $request->session()->flash('success', 'Updated Successfully');
 
-            $result = DB::table('students')->where('id',$request->id)->update([
-            'fname' => $request->fname,
-            'lname' => $request->lname,
-            'mobile' => $request->mobile,
-            ]);
+            // $result = DB::table('students')->where('id',$request->id)->update([
+            // 'fname' => $request->fname,
+            // 'lname' => $request->lname,
+            // 'mobile' => $request->mobile,
+            // ]);
             $request->session()->flash('success', 'Updated Successfully');
             return redirect()->to('/registration');
         }else{
