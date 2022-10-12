@@ -11,6 +11,7 @@ use App\Models\Student;
 use Illuminate\Support\Facades\Cache;
 use App\Mail\StudentMail;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\StudentMarkdownMail;
 
 class StudentController extends Controller
 {
@@ -168,5 +169,6 @@ class StudentController extends Controller
         ];
 
         Mail::to('qdkhan05@gmail.com')->send(new StudentMail($details));
+        Mail::to('qdkhan05@gmail.com')->send(new StudentMarkdownMail($details));
     }
 }

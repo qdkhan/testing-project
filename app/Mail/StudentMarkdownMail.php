@@ -18,9 +18,11 @@ class StudentMarkdownMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+    public $details;
+    public function __construct($details)
     {
-        //
+        $this->details = $details;
     }
 
     /**
@@ -31,7 +33,7 @@ class StudentMarkdownMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Student Markdown Mail',
+            subject: 'Mail From Xipetech Markdown',
         );
     }
 
