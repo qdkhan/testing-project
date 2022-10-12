@@ -11,6 +11,8 @@ class Student extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = ['fname', 'lname', 'mobile'];
+
     protected $casts = [
         'created_at' => 'datetime:Y-m-d',
     ];

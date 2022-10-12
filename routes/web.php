@@ -143,3 +143,6 @@ Route::get('/belongsToMany', [ServiceController::class, 'belongsToMany']);
 Route::get('hasOneThrough', [HasOneController::class, 'hasOneThrough']);
 
 Route::view('testing','testingIndex.index');
+
+//Send Mail Message
+Route::get('/sendMail', [StudentController::class, 'sendEmail']);

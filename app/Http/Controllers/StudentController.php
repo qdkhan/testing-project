@@ -8,15 +8,24 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Models\Student;
-
+use Illuminate\Support\Facades\Cache;
+use App\Mail\StudentMail;
+use Illuminate\Support\Facades\Mail;
 
 class StudentController extends Controller
 {
     public function registrationForm(){
 
+        $data = cache()->remember('students', 120, function () {
+            // return DB::table('users')->get();
+            return Student::whereLname('Khanna')->orderBy('id','DESC')->get();;
+        });
+
         // $data = DB::table('students')->select('*')->get();
         // $data = Student::withTrashed()->select('*')->get();
-        $data = Student::whereLname('Khanna')->orderBy('id','DESC')->get();
+
+        // $data = Student::whereLname('Khanna')->orderBy('id','DESC')->get();
+
         #$data = Student::skip(3)->take(5)->get();// Or
         #$data = Student::offset(3)->limit(5)->get();
 
@@ -52,6 +61,8 @@ class StudentController extends Controller
             $result->save();
 
             $id = $result->id;
+
+            cache()->flush();
 
             $request->session()->flash('success', 'Inserted Successfully');
             // if($id) return view('registration-form');
@@ -102,6 +113,7 @@ class StudentController extends Controller
         // return $request->id;
         $id = Student::where('id', $request->id)->delete();
         // $id = Student::destroy([1,2,3,4,5]);
+        cache()->flush();
         $request->session()->flash('delete', 'Deleted Successfully');
         return redirect()->to('/registration');
     }
@@ -127,6 +139,7 @@ class StudentController extends Controller
             $result->mobile = $request->mobile;
             $result->save();
 
+            cache()->flush();
             // $id = $result->id;
 
             // $request->session()->flash('success', 'Updated Successfully');
@@ -146,5 +159,14 @@ class StudentController extends Controller
             $all_data = Student::orderBy('id','DESC')->get();
             return view('/registration-form', ['dataa' => $dataa, 'data'=>$all_data]);
         }
+    }
+
+    public function sendEmail(){
+        $details = [
+            'title' => 'Testing Mail',
+            'body' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).'
+        ];
+
+        Mail::to('qdkhan05@gmail.com')->send(new StudentMail($details));
     }
 }
