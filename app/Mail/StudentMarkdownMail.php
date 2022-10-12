@@ -19,7 +19,7 @@ class StudentMarkdownMail extends Mailable
      * @return void
      */
 
-    public $details;
+    protected $details;
     public function __construct($details)
     {
         $this->details = $details;
@@ -46,6 +46,10 @@ class StudentMarkdownMail extends Mailable
     {
         return new Content(
             markdown: 'mail.student-markdown-mail',
+            with: [
+                'title'=> $this->details['title'],
+                'body'=> $this->details['body'],
+            ]
         );
     }
 
