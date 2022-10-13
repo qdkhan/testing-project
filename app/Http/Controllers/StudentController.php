@@ -40,7 +40,7 @@ class StudentController extends Controller
             $request->validate([
                 'fname' => 'required',
                 'lname' => 'required',
-                'mobile' => 'required',
+                'mobile' => 'required|min:10',
             ],
             [
                 'fname.required' => 'First name field is required',

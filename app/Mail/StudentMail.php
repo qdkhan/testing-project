@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class StudentMail extends Mailable
+class StudentMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -46,8 +46,6 @@ class StudentMail extends Mailable
         return new Content(
             view: 'mail.mail',
         );
-
-        // return $this->subject('Email From Xipetech')->view('mail.mail');
     }
 
     /**
