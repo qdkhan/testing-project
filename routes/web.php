@@ -7,6 +7,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CrudController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HasOneController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -146,3 +147,6 @@ Route::view('testing','testingIndex.index');
 
 //Send Mail Message
 Route::get('/sendMail', [StudentController::class, 'sendEmail']);
+
+//Pagination With Fake Data
+Route::get('/paginate', [ProductController::class, 'paginateProduct']);
