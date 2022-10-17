@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Student;
 use App\Observers\StudentObserver;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,5 +27,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Student::observe(StudentObserver::class);
+        Paginator::useBootstrap();
     }
 }
