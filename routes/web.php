@@ -34,6 +34,8 @@ require __DIR__.'/auth.php';
 
 
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -150,3 +152,7 @@ Route::get('/sendMail', [StudentController::class, 'sendEmail']);
 
 //Pagination With Fake Data
 Route::get('/paginate', [ProductController::class, 'paginateProduct']);
+
+//PDF
+Route::get('generate-pdf', [ProductController::class, 'generatePDF']);
+Route::get('generate-str/{slug}', [ProductController::class, 'generateStr']);

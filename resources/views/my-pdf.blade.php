@@ -12,8 +12,7 @@ table, th, td {
   <div class="container">
     <div class="row">
       <div class="col">
-        <h2>Product List</h2><a href="{{url('generate-pdf')}}" class="btn btn-primary pull-right">Download</a>
-        <img src="{{ asset('facebook.png') }}" style="width: 100px; height: 100px">
+        <h2>Product List</h2><img src="{{ public_path('facebook.png') }}" style="width: 100px; height: 100px">
           <table class="table table-success table-striped">
             <tr>
               <th>ID</th>
@@ -27,9 +26,7 @@ table, th, td {
                       <td>{{$data->description}}</td>
                   </tr>
               @endforeach
-              
           </table>
-          {!! $datas->links() !!}
       <div>
     </div>
   </div>
