@@ -8,6 +8,7 @@ use App\Http\Controllers\CrudController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HasOneController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\FluentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -156,3 +157,6 @@ Route::get('/paginate', [ProductController::class, 'paginateProduct']);
 //PDF
 Route::get('generate-pdf', [ProductController::class, 'generatePDF']);
 Route::get('generate-str/{slug}', [ProductController::class, 'generateStr']);
+
+//Fluent Controller
+Route::get('fluent-string', [FluentController::class, 'fluentString'])->name('fluents.fluentString');
